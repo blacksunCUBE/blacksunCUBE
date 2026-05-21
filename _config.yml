@@ -1,0 +1,46 @@
+# Site settings
+title: blacksunCUBE
+description: Offensive & defensive security research
+author: blacksunCUBE
+url: "https://blacksuncube.github.io"
+baseurl: ""
+future: true
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:year/:month/:day/:title/
+
+# Social
+social:
+  twitter: "https://x.com"
+
+# Collections
+collections:
+  posts:
+    output: true
+  notebook:
+    output: true
+    permalink: /notebook/:path/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Exclude
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap

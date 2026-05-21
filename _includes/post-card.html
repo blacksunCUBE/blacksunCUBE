@@ -1,0 +1,41 @@
+{%- comment -%}
+Post card. Expects: include.post
+If post has `external_url` and it's a PDF (ends in .pdf) OR post.pdf is true,
+it opens in a new tab. Otherwise it links to the post permalink.
+{%- endcomment -%}
+
+{%- assign p = include.post -%}
+{%- assign is_pdf = false -%}
+{%- if p.pdf or p.external_url contains '.pdf' -%}
+  {%- assign is_pdf = true -%}
+{%- endif -%}
+
+{%- if p.external_url -%}
+  {%- assign href = p.external_url -%}
+  {%- assign target = '_blank' -%}
+  {%- assign rel = 'noopener noreferrer' -%}
+{%- else -%}
+  {%- assign href = p.url | relative_url -%}
+  {%- assign target = '_self' -%}
+  {%- assign rel = '' -%}
+{%- endif -%}
+
+<article class="card">
+  <div class="card__media{% if is_pdf %} card__media--pdf{% endif %}">
+    {% if p.thumbnail %}
+      <img src="{{ p.thumbnail | relative_url }}" alt="" loading="lazy" />
+    {% endif %}
+  </div>
+  <div class="card__body">
+    <h3 class="card__title">{{ p.title }}</h3>
+    {% if p.description %}<p class="card__desc">{{ p.description }}</p>{% endif %}
+    <div class="card__foot">
+      <time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%b %d, %Y" }}</time>
+      <span class="card__cta">
+        {% if is_pdf %}View PDF{% elsif p.external_url %}Open{% else %}Read{% endif %}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+      </span>
+    </div>
+  </div>
+  <a class="card__link" href="{{ href }}"{% if target == '_blank' %} target="_blank" rel="{{ rel }}"{% endif %} aria-label="{{ p.title }}"></a>
+</article>

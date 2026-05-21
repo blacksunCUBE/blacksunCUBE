@@ -1,0 +1,107 @@
+<nav class="nav" role="navigation" aria-label="Primary">
+  <div class="nav__inner">
+    <a class="nav__brand" href="{{ '/' | relative_url }}" aria-label="blacksunCUBE home">
+      <span class="nav__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <defs>
+            <!-- Solar core: warm yellow to orange -->
+            <radialGradient id="bscSun" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="#fff6b8" />
+              <stop offset="45%"  stop-color="#ffd24a" />
+              <stop offset="100%" stop-color="#ff8a00" />
+            </radialGradient>
+            <!-- Red cube edge: deep crimson -->
+            <linearGradient id="bscRed" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%"   stop-color="#ff3b30" />
+              <stop offset="100%" stop-color="#8a0f0f" />
+            </linearGradient>
+            <!-- Soft glow for the sun -->
+            <filter id="bscGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="0.9" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- Red cube frame -->
+          <rect x="3" y="3" width="26" height="26" rx="5"
+                fill="none" stroke="url(#bscRed)" stroke-width="2.2">
+            <animate attributeName="stroke-width" values="2.2;2.6;2.2" dur="2.8s" repeatCount="indefinite"/>
+          </rect>
+
+          <!-- Inner faint square (depth hint) -->
+          <rect x="7" y="7" width="18" height="18" rx="3"
+                fill="none" stroke="url(#bscRed)" stroke-width="0.7" opacity="0.45"/>
+
+          <!-- Solar core, pulsing -->
+          <circle cx="16" cy="16" r="5" fill="url(#bscSun)" filter="url(#bscGlow)">
+            <animate attributeName="r"       values="4.6;5.6;4.6" dur="2.4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.85;1;0.85" dur="2.4s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- Intelligence particles being absorbed into the core -->
+          <!-- Each particle starts at a cube edge and animates toward the center -->
+          <circle r="0.9" fill="#fff0a6">
+            <animate attributeName="cx" values="5;16"  dur="1.8s" repeatCount="indefinite"/>
+            <animate attributeName="cy" values="5;16"  dur="1.8s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;1;0" dur="1.8s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="0.8" fill="#ffd24a">
+            <animate attributeName="cx" values="27;16" dur="2.1s" begin="0.3s" repeatCount="indefinite"/>
+            <animate attributeName="cy" values="5;16"  dur="2.1s" begin="0.3s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;1;0" dur="2.1s" begin="0.3s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="0.9" fill="#fff0a6">
+            <animate attributeName="cx" values="5;16"  dur="1.9s" begin="0.7s" repeatCount="indefinite"/>
+            <animate attributeName="cy" values="27;16" dur="1.9s" begin="0.7s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;1;0" dur="1.9s" begin="0.7s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="0.8" fill="#ffd24a">
+            <animate attributeName="cx" values="27;16" dur="2.0s" begin="1.1s" repeatCount="indefinite"/>
+            <animate attributeName="cy" values="27;16" dur="2.0s" begin="1.1s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;1;0" dur="2.0s" begin="1.1s" repeatCount="indefinite"/>
+          </circle>
+          <!-- Cardinal direction particles -->
+          <circle r="0.7" fill="#fff6b8">
+            <animate attributeName="cx" values="16;16" dur="1.6s" begin="0.2s" repeatCount="indefinite"/>
+            <animate attributeName="cy" values="3;16"  dur="1.6s" begin="0.2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;1;0" dur="1.6s" begin="0.2s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="0.7" fill="#fff6b8">
+            <animate attributeName="cx" values="29;16" dur="1.7s" begin="0.9s" repeatCount="indefinite"/>
+            <animate attributeName="cy" values="16;16" dur="1.7s" begin="0.9s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;1;0" dur="1.7s" begin="0.9s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+      </span>
+      blacksunCUBE
+    </a>
+
+    <ul class="nav__menu">
+      <li><a class="nav__link {% if page.url contains '/public' %}is-active{% endif %}" href="{{ '/public/' | relative_url }}">News</a></li>
+      <li><a class="nav__link {% if page.url contains '/notebook' %}is-active{% endif %}" href="{{ '/notebook/' | relative_url }}">Notebook</a></li>
+    </ul>
+
+    <div class="nav__right">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle color theme" title="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+        </svg>
+      </button>
+
+      <button type="button" class="nav__burger" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="nav-drawer" class="nav__drawer" data-nav-drawer>
+    <ul>
+      <li><a href="{{ '/public/' | relative_url }}">News</a></li>
+      <li><a href="{{ '/notebook/' | relative_url }}">Notebook</a></li>
+    </ul>
+  </div>
+</nav>

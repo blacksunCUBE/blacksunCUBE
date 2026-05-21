@@ -1,0 +1,38 @@
+---
+layout: default
+title: Home
+description: Offensive & defensive security research.
+---
+
+<section class="hero">
+  <div class="container">
+    <span class="hero__eyebrow reveal reveal--1">Active · {{ 'now' | date: "%Y" }}</span>
+    <h1 class="hero__title reveal reveal--2">
+      Offensive research. <em>Defensive precision.</em>
+    </h1>
+    <p class="hero__lead reveal reveal--3">
+      blacksunCUBE is a personal research lab specializing in purple team tradecraft.
+      It openly shares writeups, reports and reference materials to support the community.
+    </p>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <header class="section__head">
+      <h2 class="section__title">Latest</h2>
+      <a class="section__link" href="{{ '/public/' | relative_url }}">All posts</a>
+    </header>
+
+    {% assign latest = site.posts | slice: 0, 3 %}
+    {% if latest.size > 0 %}
+      <div class="post-grid">
+        {% for p in latest %}
+          {% include post-card.html post=p %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p style="color: var(--text-muted);">No posts yet. Check back soon.</p>
+    {% endif %}
+  </div>
+</section>
