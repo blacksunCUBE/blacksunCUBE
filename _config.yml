@@ -9,6 +9,8 @@ future: true
 # Build settings
 markdown: kramdown
 highlighter: rouge
+theme: minima
+
 permalink: /:categories/:year/:month/:day/:title/
 
 # Social
@@ -19,6 +21,7 @@ social:
 collections:
   posts:
     output: true
+
   notebook:
     output: true
     permalink: /notebook/:path/
@@ -38,6 +41,7 @@ exclude:
   - Gemfile.lock
   - node_modules
   - vendor
+  - .github
 
 # Plugins
 plugins:
